@@ -12,7 +12,7 @@ def getPull(path):
 
 def getSetOfHashes(f):
     s = set()
-    for line in f.read().split(" "):
+    for line in f.read().split("\n"):
         s.add(line)
     return s
 
@@ -26,15 +26,22 @@ def warn(s):
 def write(path):
     f = open(path, "w")
     for md5 in total:
-        f.write(md5 + " ")
+        f.write(md5 + "\n")
     f.close()
     return
 
 total = set()
+try:
+    db_path = ""
+    path_file = open('db path.txt', 'r')
+    db_path = path_file.read()
+    path_file.close()
+except Exception, e:
+    warn("Database path is empty, or non existent.")
 
 try:
     # import from db
-    f = open("\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt", "r")
+    f = open(db_path, "r")
     total = getSetOfHashes(f)
         
 except Exception, e:
@@ -42,12 +49,12 @@ except Exception, e:
 
 try:
     # add pull from virusshare to total
-    getPull('\kirinrastogi\Dev\git-work\SimpleAntiVirus\Update\url.txt')
+    getPull('url.txt')
 except Exception, e:
     warn(str(e))
 
 try:
     #write to file
-    write("\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt")
+    write(db_path)
 except Exception, e:
     warn(str(e))
