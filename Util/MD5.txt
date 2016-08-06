@@ -1,0 +1,1 @@
+echo `certUtil -hashfile tohash.txt MD5` >> result.txt
