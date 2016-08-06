@@ -1,0 +1,1 @@
+create a file Database/db.txt to go in this folder so the updater does not break
