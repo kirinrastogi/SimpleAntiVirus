@@ -33,7 +33,7 @@ total = set()
 
 try:
     # import from db
-    f = open("E:\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt", "r")
+    f = open("\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt", "r")
     total = getSetOfHashes(f)
         
 except Exception, e:
@@ -41,12 +41,12 @@ except Exception, e:
 
 try:
     # add pull from virusshare to total
-    getPull('E:\kirinrastogi\Dev\git-work\SimpleAntiVirus')
+    getPull('\kirinrastogi\Dev\git-work\SimpleAntiVirus')
 except Exception, e:
     warn(str(e))
 
 try:
     #write to file
-    write("E:\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt")
+    write("\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt")
 except Exception, e:
     warn(str(e))
