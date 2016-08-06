@@ -1,30 +1,10 @@
 #get info from virusshare, store in txt file
 import requests
 
-total = set()
-
-try:
-    # import from db
-    f = open("db.txt", "r")
-    total = getSetOfHashes(f)
-        
-except Exception, e:
-    warn(str(e))
-
-try:
-    # add pull from virusshare to total
-    getPull('https://virusshare.com/hashes/VirusShare_00264.md5')
-except Exception, e:
-    warn(str(e))
-
-try:
-    #write to file
-    write("E:\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt")
-except Exception, e:
-    warn(str(e))
-
-def getPull(url):
-    r = requests.get(url)
+def getPull(path):
+    f = open(path, 'r')
+    print(f.read())
+    r = requests.get(f.read())
     for s in r.content.split('\n'):
         if not s.startsWith("#"):
             total.add(s)
@@ -48,3 +28,25 @@ def write(path):
         f.write(md5 + " ")
     f.close()
     return
+
+total = set()
+
+try:
+    # import from db
+    f = open("E:\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt", "r")
+    total = getSetOfHashes(f)
+        
+except Exception, e:
+    warn(str(e))
+
+try:
+    # add pull from virusshare to total
+    getPull('E:\kirinrastogi\Dev\git-work\SimpleAntiVirus')
+except Exception, e:
+    warn(str(e))
+
+try:
+    #write to file
+    write("E:\kirinrastogi\Dev\git-work\SimpleAntiVirus\Database\db.txt")
+except Exception, e:
+    warn(str(e))
