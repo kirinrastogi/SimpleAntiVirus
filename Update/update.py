@@ -3,10 +3,10 @@ import requests
 
 def getPull(path):
     f = open(path, 'r')
-    print(f.read())
     r = requests.get(f.read())
-    for s in r.content.split('\n'):
-        if not s.startsWith("#"):
+    f.close()
+    for s in r.content.split("\n"):
+        if not s.startswith("#"):
             total.add(s)
     return
 
@@ -20,6 +20,7 @@ def warn(s):
     f = open("log.log", "w")
     f.write("error occured: " + str(s) + " \n")
     f.close()
+    print(str(s))
     return
 
 def write(path):
@@ -41,7 +42,7 @@ except Exception, e:
 
 try:
     # add pull from virusshare to total
-    getPull('\kirinrastogi\Dev\git-work\SimpleAntiVirus')
+    getPull('\kirinrastogi\Dev\git-work\SimpleAntiVirus\Update\url.txt')
 except Exception, e:
     warn(str(e))
 
